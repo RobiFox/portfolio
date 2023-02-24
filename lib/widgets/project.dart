@@ -29,50 +29,69 @@ class Project extends StatelessWidget {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            GestureDetector(
-              child: SizedBox(
-                height: 128,
-                width: 256,
-                child: Image.asset("projects/${data.image}".asAsset(),
-                    fit: BoxFit.contain),
+            MouseRegion(
+              cursor: SystemMouseCursors.zoomIn,
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.of(context).push(PageRouteBuilder(
+                    opaque: false,
+                    barrierDismissible: true,
+                    transitionDuration: const Duration(milliseconds: 300),
+                    reverseTransitionDuration:
+                        const Duration(milliseconds: 300),
+                    pageBuilder: (context, animation, secondaryAnimation) {
+                      return AnimatedBuilder(
+                          animation: animation,
+                          builder: (BuildContext context, Widget? child) {
+                            return FadeTransition(
+                              opacity: Tween(begin: 0.0, end: 1.0).animate(
+                                  CurvedAnimation(
+                                      parent: animation,
+                                      curve: Curves.fastOutSlowIn)),
+                              child: child,
+                            );
+                          },
+                          child: Align(
+                              child: Hero(
+                                  tag: "zoom",
+                                  child: Stack(
+                                      alignment: Alignment.center,
+                                      children: [
+                                        GestureDetector(
+                                          child: Container(
+                                              color: Colors.black
+                                                  .withOpacity(0.9)),
+                                          onTap: () {
+                                            Navigator.of(context).pop();
+                                          },
+                                        ),
+                                        Image.asset("projects/${data.image}"),
+                                        Align(
+                                            alignment: Alignment.topLeft,
+                                            child: Material(
+                                              color: Colors.transparent,
+                                                child: Padding(
+                                                  padding: const EdgeInsets.all(8.0),
+                                                  child: IconButton(
+                                                    color: Colors.white,
+                                                      iconSize: 64,
+                                                      onPressed: () =>
+                                                          Navigator.of(context)
+                                                              .pop(),
+                                                      icon: const Icon(
+                                                          Icons.arrow_back)),
+                                                ))),
+                                      ]))));
+                    },
+                  ));
+                },
+                child: SizedBox(
+                  height: 128,
+                  width: 256,
+                  child: Image.asset("projects/${data.image}".asAsset(),
+                      fit: BoxFit.contain, isAntiAlias: true),
+                ),
               ),
-              onTap: () {
-                Navigator.of(context).push(PageRouteBuilder(
-                  opaque: false,
-                  barrierDismissible: true,
-                  transitionDuration: const Duration(milliseconds: 300),
-                  reverseTransitionDuration: const Duration(milliseconds: 300),
-                  pageBuilder: (context, animation, secondaryAnimation) {
-                    return AnimatedBuilder(
-                        animation: animation,
-                        builder: (BuildContext context, Widget? child) {
-                          return FadeTransition(
-                            opacity: Tween(begin: 0.0, end: 1.0).animate(
-                                CurvedAnimation(
-                                    parent: animation,
-                                    curve: Curves.fastOutSlowIn)),
-                            child: child,
-                          );
-                        },
-                        child: Align(
-                            child: Hero(
-                                tag: "zoom",
-                                child: Stack(
-                                    alignment: Alignment.center,
-                                    children: [
-                                      GestureDetector(
-                                        child: Container(
-                                            color:
-                                                Colors.black.withOpacity(0.9)),
-                                        onTap: () {
-                                          Navigator.of(context).pop();
-                                        },
-                                      ),
-                                      Image.asset("projects/${data.image}")
-                                    ]))));
-                  },
-                ));
-              },
             ),
             const SizedBox(
               width: 16,
