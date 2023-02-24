@@ -17,6 +17,7 @@ class Project extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
 
     return Container(
       width: max(width / 2, 800) - 16,
@@ -65,7 +66,7 @@ class Project extends StatelessWidget {
                                             Navigator.of(context).pop();
                                           },
                                         ),
-                                        Image.asset("projects/${data.image}"),
+                                        Container(constraints: BoxConstraints(maxWidth: width / 1.2, maxHeight: height / 1.2), child: Image.asset("projects/${data.image}")),
                                         Align(
                                             alignment: Alignment.topLeft,
                                             child: Material(
@@ -86,10 +87,13 @@ class Project extends StatelessWidget {
                   ));
                 },
                 child: SizedBox(
-                  height: 128,
+                  height: 192,
                   width: 256,
-                  child: Image.asset("projects/${data.image}".asAsset(),
-                      fit: BoxFit.contain, isAntiAlias: true),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(8),
+                    child: Image.asset("projects/${data.image}".asAsset(),
+                        fit: BoxFit.cover, isAntiAlias: true, filterQuality: FilterQuality.high,),
+                  ),
                 ),
               ),
             ),
