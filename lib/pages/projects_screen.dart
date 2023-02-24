@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:robi_portfolio/widgets/widgets.dart';
 
 class ProjectsPage extends StatefulWidget {
   const ProjectsPage({Key? key}) : super(key: key);
@@ -16,7 +17,8 @@ class _ProjectsPageState extends State<ProjectsPage> {
       constraints: BoxConstraints(minHeight: height),
       child: Column(
         children: [
-          Text("yo"),
+          Project(data: ProjectData("name", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Faucibus et molestie ac feugiat. Blandit cursus risus at ultrices mi tempus imperdiet. Vulputate eu scelerisque felis imperdiet proin fermentum. Ornare quam viverra orci sagittis eu volutpat. Ultricies mi quis hendrerit dolor magna. Nulla at volutpat diam ut venenatis tellus in. Mattis pellentesque id nibh tortor id. Sit amet massa vitae tortor condimentum lacinia quis. Eros donec ac odio tempor orci dapibus ultrices in iaculis. Quis viverra nibh cras pulvinar mattis nunc sed blandit. Diam ut venenatis tellus in metus vulputate eu scelerisque felis. Purus semper eget duis at tellus. Diam in arcu cursus euismod quis viverra nibh cras pulvinar. In ornare quam viverra orci sagittis eu volutpat odio. Quam lacus suspendisse faucibus interdum. Dignissim enim sit amet venenatis. A condimentum vitae sapien pellentesque habitant morbi.")),
+          Project(data: ProjectData("name", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.")),
         ],
       ),
     );
