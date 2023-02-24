@@ -21,7 +21,7 @@ class Project extends StatelessWidget {
     return Container(
       width: max(width / 2, 800) - 16,
       decoration: BoxDecoration(
-          color: Colors.black.withAlpha(10),
+          color: Colors.black.withAlpha(12),
           borderRadius: BorderRadius.circular(32),
           border: Border.all(width: 4, color: Colors.transparent)),
       child: Padding(
@@ -72,10 +72,26 @@ class Project extends StatelessWidget {
                       ),
                     ),
                     if (data.tags != null)
-                      Wrap(
-                        spacing: 8,
-                        runSpacing: 8,
-                        children: [for (var tag in data.tags!) tag],
+                      Stack(
+                        children: [
+                          Positioned.fill(
+                              left: -4,
+                              right: -4,
+                              top: -4,
+                              bottom: -4,
+                              child: Ink(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(16),
+                                  color: Colors.grey.withAlpha(12),
+                                  //backgroundBlendMode: BlendMode.b
+                                ),
+                              )),
+                          Wrap(
+                            spacing: 8,
+                            runSpacing: 8,
+                            children: data.tags!,
+                          ),
+                        ],
                       )
                   ],
                 ),
