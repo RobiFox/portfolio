@@ -1,0 +1,12 @@
+[
+  {
+    "id": "java",
+    "name": "Java",
+    "color": "0xFFFF5252"
+  },
+  {
+    "id": "spring",
+    "name": "Spring",
+    "color": "0xFF00E676"
+  }
+]

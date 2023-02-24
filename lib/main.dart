@@ -1,10 +1,33 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter/services.dart' show rootBundle;
+import 'package:robi_portfolio/data.dart';
 import 'package:robi_portfolio/pages/pages.dart';
+import 'package:robi_portfolio/string_apis.dart';
 
 import 'widgets/widgets.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  {
+    String tagsData = await rootBundle.loadString(
+        "data/tags.json".asAsset());
+    List<dynamic> tagsJson = jsonDecode(tagsData);
+    for (var v in tagsJson) {
+      Data.tags[v["id"]] = Tag.fromJson(v);
+    }
+  }
+  {
+    String projectsData = await rootBundle.loadString(
+        "data/projects.json".asAsset());
+    List<dynamic> projectsJson = jsonDecode(projectsData);
+    for (var v in projectsJson) {
+      Data.projects.add(ProjectData.fromJson(v));
+    }
+  }
+
   runApp(const MyApp());
 }
 
