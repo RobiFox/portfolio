@@ -1,6 +1,6 @@
 [
   {
-    "image": "github-mark.png",
+    "image": "portfolio.png",
     "name": "Portfolio",
     "description": "You are looking at it right now!",
     "tags": [
@@ -22,7 +22,7 @@
     ]
   },
   {
-    "image": "github-mark.png",
+    "image": "invoice_system_react.png",
     "name": "Invoice System Frontend",
     "description": "A simple Front-End for the aforementioned Back End system made in react. Consists of a simple table.",
     "tags": [
@@ -33,7 +33,7 @@
     ]
   },
   {
-    "image": "github-mark.png",
+    "image": "invoice_system_flutter.png",
     "name": "Invoice System Flutter",
     "description": "A Front-End made in Flutter for the aforementioned Back End system made in react. Consists of a simple table.",
     "tags": [
@@ -44,7 +44,7 @@
     ]
   },
   {
-    "image": "github-mark.png",
+    "image": "json_placeholder.png",
     "name": "JSON Placeholder App",
     "description": "A plain android app that downloads data from JSONPlaceholder and shows it to the user.",
     "tags": [
@@ -55,7 +55,7 @@
     ]
   },
   {
-    "image": "github-mark.png",
+    "image": "json_placeholder_flutter.png",
     "name": "JSON Placeholder Flutter",
     "description": "A plain Flutter app that downloads data from JSONPlaceholder and shows it to the user.",
     "tags": [
@@ -66,7 +66,7 @@
     ]
   },
   {
-    "image": "github-mark.png",
+    "image": "chill.png",
     "name": "chill",
     "description": "Rest API Tester made in Flutter.",
     "tags": [
@@ -77,7 +77,7 @@
     ]
   },
   {
-    "image": "github-mark.png",
+    "image": "pushd.png",
     "name": "Pushd",
     "description": "An online competitive-ish puzzle game, up to 4 players, made in 2019. No English language available.",
     "tags": [
@@ -99,7 +99,7 @@
     ]
   },
   {
-    "image": "github-mark.png",
+    "image": "emit.png",
     "name": "EMIT ",
     "description": "A singleplayer puzzle game about reversing time",
     "tags": [
