@@ -21,7 +21,7 @@ class Project extends StatelessWidget {
     return Container(
       width: max(width / 2, 800) - 16,
       decoration: BoxDecoration(
-        color: Colors.black.withAlpha(10),
+          color: Colors.black.withAlpha(10),
           borderRadius: BorderRadius.circular(32),
           border: Border.all(width: 4, color: Colors.transparent)),
       child: Padding(
@@ -55,10 +55,11 @@ class Project extends StatelessWidget {
                     Expanded(
                       child: LayoutBuilder(
                         builder: (context, constraints) {
-                          final maxLines =
+                          final maxLines = max(
                               (constraints.maxHeight / _descriptionFontSize)
                                       .floor() -
-                                  1;
+                                  1,
+                              1);
                           return Text(
                             data.description,
                             style: GoogleFonts.roboto(
@@ -70,17 +71,11 @@ class Project extends StatelessWidget {
                         },
                       ),
                     ),
-                    const SizedBox(
-                      height: 8,
-                    ),
                     if (data.tags != null)
-                      Row(
-                        children: [
-                          for (var tag in data.tags!)
-                            Row(
-                              children: [tag, const SizedBox(width: 8)],
-                            )
-                        ],
+                      Wrap(
+                        spacing: 8,
+                        runSpacing: 8,
+                        children: [for (var tag in data.tags!) tag],
                       )
                   ],
                 ),
@@ -103,7 +98,10 @@ class ProjectData {
   ProjectData.fromJson(Map<String, dynamic> json)
       : name = json["name"],
         description = json["description"],
-        tags = (json["tags"] as List<dynamic>).map((e) => Data.tags[e]).cast<Tag>().toList();
+        tags = (json["tags"] as List<dynamic>)
+            .map((e) => Data.tags[e])
+            .cast<Tag>()
+            .toList();
 
   ProjectData withTags({List<Tag>? tags}) {
     return ProjectData(name, description, tags ?? this.tags);

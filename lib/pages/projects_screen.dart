@@ -11,6 +11,14 @@ class ProjectsPage extends StatefulWidget {
 }
 
 class _ProjectsPageState extends State<ProjectsPage> {
+  late List<ProjectData> _shownProjects;
+
+  @override
+  void initState() {
+    _shownProjects = Data.projects;
+    super.initState();
+  }
+
   Widget buildTagRemoveButton(BuildContext context) {
     return Transform.scale(
         scale: 2,
