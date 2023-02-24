@@ -75,14 +75,14 @@ class Project extends StatelessWidget {
                       Stack(
                         children: [
                           Positioned.fill(
-                              left: -4,
-                              right: -4,
-                              top: -4,
-                              bottom: -4,
+                              left: -8,
+                              right: -8,
+                              top: -8,
+                              bottom: -8,
                               child: Ink(
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(16),
-                                  color: Colors.grey.withAlpha(12),
+                                  color: Colors.grey.withAlpha(6),
                                   //backgroundBlendMode: BlendMode.b
                                 ),
                               )),
