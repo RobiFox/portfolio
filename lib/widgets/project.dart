@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:robi_portfolio/string_apis.dart';
 
+const double _nameFontSize = 24;
+const double _descriptionFontSize = 14;
+
 class Project extends StatelessWidget {
   final ProjectData data;
 
@@ -36,14 +39,25 @@ class Project extends StatelessWidget {
                   ),
                   Text(
                     data.name,
-                    style: GoogleFonts.roboto(fontSize: 24),
+                    style: GoogleFonts.roboto(fontSize: _nameFontSize),
                     textAlign: TextAlign.left,
                   ),
-                  Text(
-                    data.description,
-                    style: GoogleFonts.roboto(),
-                    textAlign: TextAlign.left,
-                    overflow: TextOverflow.ellipsis,
+                  Expanded(
+                    child: LayoutBuilder(
+                      builder: (context, constraints) {
+                        final maxLines =
+                            (constraints.maxHeight / _descriptionFontSize)
+                                    .floor() - 1;
+                        return Text(
+                          data.description,
+                          style: GoogleFonts.roboto(
+                              fontSize: _descriptionFontSize),
+                          textAlign: TextAlign.left,
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: maxLines,
+                        );
+                      },
+                    ),
                   ),
                   const SizedBox(
                     height: 8,
