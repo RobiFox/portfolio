@@ -1,10 +1,13 @@
 [
   {
     "image": "github-mark.png",
-    "name": "name",
-    "description": "lorem ipsum",
+    "name": "Portfolio",
+    "description": "You are looking at it right now!",
     "tags": [
-      "java", "spring"
+      "flutter"
+    ],
+    "links": [
+      "https://github.com/RobiFox/portfolio"
     ]
   }
 ]

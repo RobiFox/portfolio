@@ -8,5 +8,10 @@
     "id": "spring",
     "name": "Spring",
     "color": "0xFF00E676"
+  },
+  {
+    "id": "flutter",
+    "name": "Flutter",
+    "color": "0xFF82B1FF"
   }
 ]

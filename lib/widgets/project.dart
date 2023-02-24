@@ -21,8 +21,9 @@ class Project extends StatelessWidget {
     return Container(
       width: max(width / 2, 800) - 16,
       decoration: BoxDecoration(
+        color: Colors.black.withAlpha(10),
           borderRadius: BorderRadius.circular(32),
-          border: Border.all(color: Colors.black.withAlpha(10), width: 4)),
+          border: Border.all(width: 4, color: Colors.transparent)),
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Row(
