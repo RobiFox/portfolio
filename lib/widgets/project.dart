@@ -29,10 +29,44 @@ class Project extends StatelessWidget {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(
-              height: 128,
-              child: Image.asset("icons/github-mark.png".asAsset(),
-                  fit: BoxFit.contain),
+            GestureDetector(
+              child: SizedBox(
+                height: 128,
+                width: 256,
+                child: Image.asset("projects/${data.image}".asAsset(),
+                    fit: BoxFit.contain),
+              ),
+              onTap: () {
+                Navigator.of(context).push(PageRouteBuilder(
+                  opaque: false,
+                  barrierDismissible: true,
+                  transitionDuration: const Duration(milliseconds: 300),
+                  reverseTransitionDuration: const Duration(milliseconds: 300),
+                  pageBuilder: (context, animation, secondaryAnimation) {
+                    return AnimatedBuilder(
+                        animation: animation,
+                        builder: (BuildContext context, Widget? child) {
+                          return FadeTransition(
+                            opacity: Tween(begin: 0.0, end: 1.0).animate(
+                                CurvedAnimation(
+                                    parent: animation,
+                                    curve: Curves.fastOutSlowIn)),
+                            child: child,
+                          );
+                        },
+                        child: Align(
+                            child: Hero(
+                                tag: "zoom",
+                                child: Stack(alignment: Alignment.center, children: [
+                                  GestureDetector(child: Container(color: Colors.black.withOpacity(0.9)),
+                                  onTap: () {
+                                    Navigator.of(context).pop();
+                                  },),
+                                  Image.asset("projects/${data.image}")
+                                ]))));
+                  },
+                ));
+              },
             ),
             const SizedBox(
               width: 16,
@@ -82,7 +116,7 @@ class Project extends StatelessWidget {
                               child: Ink(
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(16),
-                                  color: Colors.grey.withAlpha(6),
+                                  color: Colors.grey.withAlpha(12),
                                   //backgroundBlendMode: BlendMode.b
                                 ),
                               )),
@@ -107,19 +141,21 @@ class Project extends StatelessWidget {
 class ProjectData {
   final String name;
   final String description;
+  final String image;
   final List<Tag>? tags;
 
-  ProjectData(this.name, this.description, this.tags);
+  ProjectData(this.name, this.description, this.tags, this.image);
 
   ProjectData.fromJson(Map<String, dynamic> json)
       : name = json["name"],
         description = json["description"],
+        image = json["image"],
         tags = (json["tags"] as List<dynamic>)
             .map((e) => Data.tags[e])
             .cast<Tag>()
             .toList();
 
   ProjectData withTags({List<Tag>? tags}) {
-    return ProjectData(name, description, tags ?? this.tags);
+    return ProjectData(name, description, tags ?? this.tags, image);
   }
 }
