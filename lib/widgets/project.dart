@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:robi_portfolio/string_apis.dart';
@@ -15,9 +17,10 @@ class Project extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
+    print(width);
 
     return Container(
-      width: width / 2,
+      width: max(width / 2, 800) - 16,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(32),
           border: Border.all(color: Colors.black.withAlpha(10), width: 4)),
