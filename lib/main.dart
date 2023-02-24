@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:robi_portfolio/pages/pages.dart';
 
+import 'widgets/widgets.dart';
+
 void main() {
   runApp(const MyApp());
 }
