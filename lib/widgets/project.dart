@@ -57,13 +57,19 @@ class Project extends StatelessWidget {
                         child: Align(
                             child: Hero(
                                 tag: "zoom",
-                                child: Stack(alignment: Alignment.center, children: [
-                                  GestureDetector(child: Container(color: Colors.black.withOpacity(0.9)),
-                                  onTap: () {
-                                    Navigator.of(context).pop();
-                                  },),
-                                  Image.asset("projects/${data.image}")
-                                ]))));
+                                child: Stack(
+                                    alignment: Alignment.center,
+                                    children: [
+                                      GestureDetector(
+                                        child: Container(
+                                            color:
+                                                Colors.black.withOpacity(0.9)),
+                                        onTap: () {
+                                          Navigator.of(context).pop();
+                                        },
+                                      ),
+                                      Image.asset("projects/${data.image}")
+                                    ]))));
                   },
                 ));
               },
