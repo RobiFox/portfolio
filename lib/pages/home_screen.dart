@@ -4,7 +4,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+  final ScrollController scrollController;
+
+  const HomePage({Key? key, required this.scrollController}) : super(key: key);
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -61,7 +63,11 @@ class _HomePageState extends State<HomePage> {
                               fit: BoxFit.contain),
                         ),
                       ),
-                    )
+                    ),
+                    const SizedBox(height: 32),
+                    IconButton(onPressed: () {
+                      widget.scrollController.animateTo(height + _radius, duration: const Duration(milliseconds: 500), curve: Curves.easeInOut);
+                    }, icon: const Icon(Icons.arrow_downward, color: Colors.white), iconSize: 128)
                   ],
                 ),
               )

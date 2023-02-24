@@ -43,7 +43,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
         body: ListView(
       controller: _scrollController,
-      children: [HomePage(), ProjectsPage()],
+      children: [HomePage(scrollController: _scrollController,), ProjectsPage()],
     ));
   }
 }
