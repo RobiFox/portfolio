@@ -38,25 +38,10 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-
     return Scaffold(
         body: ListView(
-          controller: _scrollController,
-      children: [
-        HomePage(),
-        SizedBox(
-          width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Center(
-                child: Text("yo"),
-              )
-            ],
-          ),
-        ),
-      ],
+      controller: _scrollController,
+      children: [HomePage(), ProjectsPage()],
     ));
   }
 }
