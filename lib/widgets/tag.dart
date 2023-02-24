@@ -16,18 +16,30 @@ class Tag extends StatefulWidget {
 class _TagState extends State<Tag> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(32)),
-          color: widget.color),
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(widget.name, style: GoogleFonts.roboto(color: Colors.white),),
-            if (widget.child != null) widget.child!
-          ],
+    return MouseRegion(
+      cursor: SystemMouseCursors.click,
+      child: GestureDetector(
+        child: Container(
+          height: 32,
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.all(Radius.circular(32)),
+              color: widget.color),
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text(widget.name, style: GoogleFonts.roboto(color: Colors.white), textAlign: TextAlign.center,),
+                if (widget.child != null) Row(
+                  children: [
+                    const SizedBox(width: 4),
+                    widget.child!,
+                  ],
+                )
+              ],
+            ),
+          ),
         ),
       ),
     );

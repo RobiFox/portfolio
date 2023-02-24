@@ -10,6 +10,18 @@ class ProjectsPage extends StatefulWidget {
 }
 
 class _ProjectsPageState extends State<ProjectsPage> {
+  Widget buildTagRemoveButton(BuildContext context) {
+    return Transform.scale(
+        scale: 2,
+        child: FittedBox(
+            child: IconButton(
+                onPressed: () {},
+                icon: const Icon(
+                  Icons.cancel_outlined,
+                  color: Colors.white,
+                ))));
+  }
+
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -37,11 +49,19 @@ class _ProjectsPageState extends State<ProjectsPage> {
           ),
           Project(
             tags: [
-              Tag(name: "Spring", color: Colors.green),
-              Tag(name: "Java", color: Colors.red),
+              Tag(
+                  name: "Spring",
+                  color: Colors.green,
+                  child: buildTagRemoveButton(context)),
+              Tag(
+                name: "Java",
+                color: Colors.red,
+                child: buildTagRemoveButton(context),
+              ),
             ],
-              data: ProjectData("name",
-                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),),
+            data: ProjectData("name",
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+          ),
         ],
       ),
     );
