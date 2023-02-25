@@ -84,7 +84,7 @@
       "csharp", "unity", "desktop"
     ],
     "links": [
-      "https://github.com/RobiFox/chill"
+      "https://github.com/RobiFox/Pushd"
     ]
   },
   {
@@ -95,22 +95,23 @@
       "java", "spigot"
     ],
     "links": [
-      "https://github.com/RobiFox/chill"
+      "https://github.com/RobiFox/FoxItemLibrary"
     ]
   },
   {
     "image": "emit.png",
-    "name": "EMIT ",
+    "name": "EMIT",
     "description": "A singleplayer puzzle game about reversing time",
     "tags": [
       "csharp", "unity", "desktop"
     ],
     "links": [
-      "https://github.com/RobiFox/EMIT"
+      "https://github.com/RobiFox/EMIT",
+      "https://gamejolt.com/games/emit/473444"
     ]
   },
   {
-    "image": "github-mark.png",
+    "image": "blockquest.png",
     "name": "BlockQuest",
     "description": "A plugin for Minecraft for hiding blocks for your players to find for rewards.",
     "tags": [
