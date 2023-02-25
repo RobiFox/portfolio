@@ -31,6 +31,7 @@ class _HomePageState extends State<HomePage> {
                 image: DecorationImage(
                   image: AssetImage("images/background.png".asAsset()),
                   fit: BoxFit.cover,
+                  filterQuality: FilterQuality.medium,
                 )),
           ),
           Column(

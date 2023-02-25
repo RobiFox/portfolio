@@ -1,3 +1,4 @@
+import 'dart:html';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
@@ -7,16 +8,18 @@ import 'package:robi_portfolio/string_apis.dart';
 import 'widgets.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-const double _nameFontSize = 24;
+const double _nameFontSize = 42;
 const double _descriptionFontSize = 14;
 Map<String, Image> icons = {
   "github.com": Image.asset(
     "icons/github-mark.png".asAsset(),
     isAntiAlias: true,
+    filterQuality: FilterQuality.medium,
   ),
   "gamejolt.com": Image.asset(
     "icons/gamejolt.png".asAsset(),
     isAntiAlias: true,
+    filterQuality: FilterQuality.medium,
   ),
 };
 
@@ -46,8 +49,7 @@ class Project extends StatelessWidget {
             opaque: false,
             barrierDismissible: true,
             transitionDuration: const Duration(milliseconds: 300),
-            reverseTransitionDuration:
-            const Duration(milliseconds: 300),
+            reverseTransitionDuration: const Duration(milliseconds: 300),
             pageBuilder: (context, animation, secondaryAnimation) {
               return AnimatedBuilder(
                   animation: animation,
@@ -55,48 +57,40 @@ class Project extends StatelessWidget {
                     return FadeTransition(
                       opacity: Tween(begin: 0.0, end: 1.0).animate(
                           CurvedAnimation(
-                              parent: animation,
-                              curve: Curves.fastOutSlowIn)),
+                              parent: animation, curve: Curves.fastOutSlowIn)),
                       child: child,
                     );
                   },
                   child: Align(
                       child: Hero(
                           tag: "zoom",
-                          child: Stack(
-                              alignment: Alignment.center,
-                              children: [
-                                GestureDetector(
-                                  child: Container(
-                                      color: Colors.black
-                                          .withOpacity(0.9)),
-                                  onTap: () {
-                                    Navigator.of(context).pop();
-                                  },
-                                ),
-                                Container(
-                                    constraints: BoxConstraints(
-                                        maxWidth: width / 1.2,
-                                        maxHeight: height / 1.2),
-                                    child: Image.asset(
-                                        "projects/${data.image}")),
-                                Align(
-                                    alignment: Alignment.topLeft,
-                                    child: Material(
-                                        color: Colors.transparent,
-                                        child: Padding(
-                                          padding:
-                                          const EdgeInsets.all(8.0),
-                                          child: IconButton(
-                                              color: Colors.white,
-                                              iconSize: 64,
-                                              onPressed: () =>
-                                                  Navigator.of(context)
-                                                      .pop(),
-                                              icon: const Icon(
-                                                  Icons.arrow_back)),
-                                        ))),
-                              ]))));
+                          child: Stack(alignment: Alignment.center, children: [
+                            GestureDetector(
+                              child: Container(
+                                  color: Colors.black.withOpacity(0.9)),
+                              onTap: () {
+                                Navigator.of(context).pop();
+                              },
+                            ),
+                            Container(
+                                constraints: BoxConstraints(
+                                    maxWidth: width / 1.2,
+                                    maxHeight: height / 1.2),
+                                child: Image.asset("projects/${data.image}")),
+                            Align(
+                                alignment: Alignment.topLeft,
+                                child: Material(
+                                    color: Colors.transparent,
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: IconButton(
+                                          color: Colors.white,
+                                          iconSize: 64,
+                                          onPressed: () =>
+                                              Navigator.of(context).pop(),
+                                          icon: const Icon(Icons.arrow_back)),
+                                    ))),
+                          ]))));
             },
           ));
         },
@@ -109,7 +103,7 @@ class Project extends StatelessWidget {
               "projects/${data.image}".asAsset(),
               fit: BoxFit.cover,
               isAntiAlias: true,
-              filterQuality: FilterQuality.high,
+              filterQuality: FilterQuality.medium,
             ),
           ),
         ),
@@ -139,7 +133,7 @@ class Project extends StatelessWidget {
             ),
             Expanded(
               child: SizedBox(
-                height: 128,
+                height: 256,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -148,29 +142,35 @@ class Project extends StatelessWidget {
                       height: 8,
                     ),
                     Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          data.name,
-                          style: GoogleFonts.roboto(fontSize: _nameFontSize),
-                          textAlign: TextAlign.left,
-                        ),
                         Expanded(
-                          child: Align(
-                            alignment: AlignmentDirectional.centerEnd,
-                            child: IntrinsicWidth(
-                              child: Stack(
-                                children: [
-                                  Positioned.fill(child: Ink(decoration: BoxDecoration(color: Colors.grey.withOpacity(0.1), borderRadius: BorderRadius.circular(32)),)),
-                                  Row(children: _buildLinkButtons()
-                                  ),
-                                ],
-                              ),
+                          child: Text(
+                            data.name,
+                            style: GoogleFonts.roboto(fontSize: _nameFontSize),
+                            textAlign: TextAlign.left,
+                          ),
+                        ),
+                        const SizedBox(width: 8),
+                        Transform.translate(
+                          offset: Offset(0, -8),
+                          child: IntrinsicWidth(
+                            child: Stack(
+                              children: [
+                                Positioned.fill(
+                                    child: Ink(
+                                  decoration: BoxDecoration(
+                                      color: Colors.grey.withOpacity(0.1),
+                                      borderRadius: BorderRadius.circular(32)),
+                                )),
+                                Row(children: _buildLinkButtons()),
+                              ],
                             ),
                           ),
                         )
                       ],
                     ),
-                    Expanded(
+                    Flexible(
                       child: LayoutBuilder(
                         builder: (context, constraints) {
                           final maxLines = max(
@@ -190,26 +190,31 @@ class Project extends StatelessWidget {
                       ),
                     ),
                     if (data.tags != null)
-                      Stack(
-                        children: [
-                          Positioned.fill(
-                              left: -8,
-                              right: -8,
-                              top: -8,
-                              bottom: -8,
-                              child: Ink(
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(16),
-                                  color: Colors.grey.withAlpha(12),
-                                  //backgroundBlendMode: BlendMode.b
-                                ),
-                              )),
-                          Wrap(
-                            spacing: 8,
-                            runSpacing: 8,
-                            children: data.tags!,
+                      Expanded(
+                        child: Align(
+                          alignment: Alignment.bottomLeft,
+                          child: Stack(
+                            children: [
+                              Positioned.fill(
+                                  left: -8,
+                                  right: -8,
+                                  top: -8,
+                                  bottom: -8,
+                                  child: Ink(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(16),
+                                      color: Colors.grey.withAlpha(12),
+                                      //backgroundBlendMode: BlendMode.b
+                                    ),
+                                  )),
+                              Wrap(
+                                spacing: 8,
+                                runSpacing: 8,
+                                children: data.tags!,
+                              ),
+                            ],
                           ),
-                        ],
+                        ),
                       ),
                   ],
                 ),
