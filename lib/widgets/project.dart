@@ -119,7 +119,7 @@ class Project extends StatelessWidget {
     return Container(
       width: max(width / 2, 800) - 16,
       decoration: BoxDecoration(
-          color: Colors.black.withAlpha(12),
+          color: Colors.black.withAlpha(16),
           borderRadius: BorderRadius.circular(32),
           border: Border.all(width: 4, color: Colors.transparent)),
       child: Padding(
@@ -133,7 +133,7 @@ class Project extends StatelessWidget {
             ),
             Expanded(
               child: SizedBox(
-                height: 256,
+                height: 192,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
