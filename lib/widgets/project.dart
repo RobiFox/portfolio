@@ -5,14 +5,27 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:robi_portfolio/data.dart';
 import 'package:robi_portfolio/string_apis.dart';
 import 'widgets.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 const double _nameFontSize = 24;
 const double _descriptionFontSize = 14;
+Map<String, Image> icons = {
+  "github.com": Image.asset("icons/github-mark.png".asAsset(), isAntiAlias: true,)
+};
 
 class Project extends StatelessWidget {
   final ProjectData data;
 
   const Project({Key? key, required this.data}) : super(key: key);
+
+  List<Widget> _buildLinkButtons() {
+    List<Widget> buttons = [];
+    for(String link in data.links!) {
+      Uri uri = Uri.parse(link);
+      buttons.add(IconButton(iconSize: 24, onPressed: () => launchUrl(uri), icon: ImageIcon(icons[uri.host]?.image)));
+    }
+    return buttons;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -66,15 +79,21 @@ class Project extends StatelessWidget {
                                             Navigator.of(context).pop();
                                           },
                                         ),
-                                        Container(constraints: BoxConstraints(maxWidth: width / 1.2, maxHeight: height / 1.2), child: Image.asset("projects/${data.image}")),
+                                        Container(
+                                            constraints: BoxConstraints(
+                                                maxWidth: width / 1.2,
+                                                maxHeight: height / 1.2),
+                                            child: Image.asset(
+                                                "projects/${data.image}")),
                                         Align(
                                             alignment: Alignment.topLeft,
                                             child: Material(
-                                              color: Colors.transparent,
+                                                color: Colors.transparent,
                                                 child: Padding(
-                                                  padding: const EdgeInsets.all(8.0),
+                                                  padding:
+                                                      const EdgeInsets.all(8.0),
                                                   child: IconButton(
-                                                    color: Colors.white,
+                                                      color: Colors.white,
                                                       iconSize: 64,
                                                       onPressed: () =>
                                                           Navigator.of(context)
@@ -91,8 +110,12 @@ class Project extends StatelessWidget {
                   width: 256,
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(8),
-                    child: Image.asset("projects/${data.image}".asAsset(),
-                        fit: BoxFit.cover, isAntiAlias: true, filterQuality: FilterQuality.high,),
+                    child: Image.asset(
+                      "projects/${data.image}".asAsset(),
+                      fit: BoxFit.cover,
+                      isAntiAlias: true,
+                      filterQuality: FilterQuality.high,
+                    ),
                   ),
                 ),
               ),
@@ -110,10 +133,19 @@ class Project extends StatelessWidget {
                     const SizedBox(
                       height: 8,
                     ),
-                    Text(
-                      data.name,
-                      style: GoogleFonts.roboto(fontSize: _nameFontSize),
-                      textAlign: TextAlign.left,
+                    Row(
+                      children: [
+                        Text(
+                          data.name,
+                          style: GoogleFonts.roboto(fontSize: _nameFontSize),
+                          textAlign: TextAlign.left,
+                        ),
+                        Expanded(
+                            child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: _buildLinkButtons(),
+                        ))
+                      ],
                     ),
                     Expanded(
                       child: LayoutBuilder(
@@ -172,8 +204,9 @@ class ProjectData {
   final String description;
   final String image;
   final List<Tag>? tags;
+  final List<String>? links;
 
-  ProjectData(this.name, this.description, this.tags, this.image);
+  ProjectData(this.name, this.description, this.tags, this.image, this.links);
 
   ProjectData.fromJson(Map<String, dynamic> json)
       : name = json["name"],
@@ -182,9 +215,10 @@ class ProjectData {
         tags = (json["tags"] as List<dynamic>)
             .map((e) => Data.tags[e])
             .cast<Tag>()
-            .toList();
+            .toList(),
+        links = (json["links"] as List<dynamic>).cast<String>().toList();
 
   ProjectData withTags({List<Tag>? tags}) {
-    return ProjectData(name, description, tags ?? this.tags, image);
+    return ProjectData(name, description, tags ?? this.tags, image, links);
   }
 }
