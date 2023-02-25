@@ -10,7 +10,14 @@ import 'package:url_launcher/url_launcher.dart';
 const double _nameFontSize = 24;
 const double _descriptionFontSize = 14;
 Map<String, Image> icons = {
-  "github.com": Image.asset("icons/github-mark.png".asAsset(), isAntiAlias: true,)
+  "github.com": Image.asset(
+    "icons/github-mark.png".asAsset(),
+    isAntiAlias: true,
+  ),
+  "gamejolt.com": Image.asset(
+    "icons/gamejolt.png".asAsset(),
+    isAntiAlias: true,
+  ),
 };
 
 class Project extends StatelessWidget {
@@ -20,9 +27,12 @@ class Project extends StatelessWidget {
 
   List<Widget> _buildLinkButtons() {
     List<Widget> buttons = [];
-    for(String link in data.links!) {
+    for (String link in data.links!) {
       Uri uri = Uri.parse(link);
-      buttons.add(IconButton(iconSize: 24, onPressed: () => launchUrl(uri), icon: ImageIcon(icons[uri.host]?.image)));
+      buttons.add(IconButton(
+          iconSize: 24,
+          onPressed: () => launchUrl(uri),
+          icon: icons[uri.host] ?? const Icon(Icons.link)));
     }
     return buttons;
   }
@@ -141,10 +151,19 @@ class Project extends StatelessWidget {
                           textAlign: TextAlign.left,
                         ),
                         Expanded(
-                            child: Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: _buildLinkButtons(),
-                        ))
+                          child: Align(
+                            alignment: AlignmentDirectional.centerEnd,
+                            child: IntrinsicWidth(
+                              child: Stack(
+                                children: [
+                                  Positioned.fill(child: Ink(decoration: BoxDecoration(color: Colors.grey.withOpacity(0.1), borderRadius: BorderRadius.circular(32)),)),
+                                  Row(children: _buildLinkButtons()
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        )
                       ],
                     ),
                     Expanded(
