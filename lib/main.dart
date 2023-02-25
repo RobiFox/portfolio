@@ -12,16 +12,15 @@ import 'widgets/widgets.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   {
-    String tagsData = await rootBundle.loadString(
-        "data/tags.json".asAsset());
+    String tagsData = await rootBundle.loadString("data/tags.json".asAsset());
     List<dynamic> tagsJson = jsonDecode(tagsData);
     for (var v in tagsJson) {
       Data.tags[v["id"]] = Tag.fromJson(v);
     }
   }
   {
-    String projectsData = await rootBundle.loadString(
-        "data/projects.json".asAsset());
+    String projectsData =
+        await rootBundle.loadString("data/projects.json".asAsset());
     List<dynamic> projectsJson = jsonDecode(projectsData);
     for (var v in projectsJson) {
       Data.projects.add(ProjectData.fromJson(v));
@@ -65,8 +64,22 @@ class _MyHomePageState extends State<MyHomePage> {
     double height = MediaQuery.of(context).size.height;
     return Scaffold(
         body: ListView(
-      controller: _scrollController,
-      children: [HomePage(scrollController: _scrollController,), ProjectsPage()],
-    ));
+          controller: _scrollController,
+          children: [
+            HomePage(
+              scrollController: _scrollController,
+            ),
+            ProjectsPage()
+          ],
+        ),
+        floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          _scrollController.animateTo(0,
+              duration: const Duration(milliseconds: 250),
+              curve: Curves.easeInOut);
+        },
+        child: const Icon(Icons.arrow_upward))
+        //IconButton(color: Colors.lightBlueAccent, onPressed: () {  }, icon: const Icon(Icons.arrow_upward),),
+        );
   }
 }
