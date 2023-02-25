@@ -153,7 +153,7 @@ class Project extends StatelessWidget {
                         ),
                         const SizedBox(width: 8),
                         Transform.translate(
-                          offset: Offset(0, -8),
+                          offset: const Offset(0, -8),
                           child: IntrinsicWidth(
                             child: Stack(
                               children: [
