@@ -119,16 +119,5 @@
     "links": [
       "https://github.com/RobiFox/BlockQuest"
     ]
-  },
-  {
-    "image": "github-mark.png",
-    "name": "Test",
-    "description": "This is a very long text, This is a very long text, This is a very long text, This is a very long text, This is a very long text, This is a very long text, This is a very long text, This is a very long text, This is a very long text, This is a very long text, ",
-    "tags": [
-      "flutter", "frontend", "java", "spring", "backend", "csharp", "unity", "kotlin", "web", "android", "desktop", "spigot"
-    ],
-    "links": [
-      "https://github.com/RobiFox/portfolio"
-    ]
   }
 ]
