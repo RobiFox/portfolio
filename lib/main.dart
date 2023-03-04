@@ -56,12 +56,27 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  bool _showTopPageButton = false;
   ScrollController _scrollController = ScrollController();
+
+  late double width;
+  late double height;
+
+  @override
+  void initState() {
+    super.initState();
+    _scrollController.addListener(() {
+      bool prevVal = _showTopPageButton;
+      _showTopPageButton = _scrollController.position.pixels > height;
+      if (prevVal != _showTopPageButton) setState(() {});
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
+    width = MediaQuery.of(context).size.width;
+    height = MediaQuery.of(context).size.height;
+
     return Scaffold(
         body: ListView(
           controller: _scrollController,
@@ -72,13 +87,25 @@ class _MyHomePageState extends State<MyHomePage> {
             ProjectsPage()
           ],
         ),
-        floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          _scrollController.animateTo(0,
-              duration: const Duration(milliseconds: 250),
-              curve: Curves.easeInOut);
-        },
-        child: const Icon(Icons.arrow_upward))
+        floatingActionButton: AnimatedContainer(
+          duration: const Duration(milliseconds: 100),
+          width: _showTopPageButton ? 64 : 0,
+          height: _showTopPageButton ? 64 : 0,
+          alignment: Alignment.center,
+          child: FittedBox(
+            alignment: Alignment.center,
+            child: Align(
+              alignment: Alignment.center,
+              child: FloatingActionButton(
+                  onPressed: () {
+                    _scrollController.animateTo(0,
+                        duration: const Duration(milliseconds: 250),
+                        curve: Curves.easeInOut);
+                  },
+                  child: const Icon(Icons.arrow_upward)),
+            ),
+          ),
+        )
         //IconButton(color: Colors.lightBlueAccent, onPressed: () {  }, icon: const Icon(Icons.arrow_upward),),
         );
   }
