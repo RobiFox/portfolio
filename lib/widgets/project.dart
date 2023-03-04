@@ -21,6 +21,11 @@ Map<String, Image> icons = {
     isAntiAlias: true,
     filterQuality: FilterQuality.medium,
   ),
+  "youtube.com": Image.asset(
+    "icons/youtube.png".asAsset(),
+    isAntiAlias: true,
+    filterQuality: FilterQuality.medium,
+  ),
 };
 
 class Project extends StatelessWidget {
