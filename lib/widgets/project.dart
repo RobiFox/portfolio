@@ -170,7 +170,7 @@ class Project extends StatelessWidget {
                         )
                       ],
                     ),
-                    Flexible(
+                    Expanded(
                       child: LayoutBuilder(
                         builder: (context, constraints) {
                           final maxLines = max(
