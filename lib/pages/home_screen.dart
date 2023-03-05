@@ -19,7 +19,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-    
+
     return SizedBox(
       width: width,
       height: height + _radius,
@@ -27,7 +27,9 @@ class _HomePageState extends State<HomePage> {
         children: [
           Container(
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.only(bottomRight: Radius.circular(_radius), bottomLeft: Radius.circular(_radius)),
+                borderRadius: BorderRadius.only(
+                    bottomRight: Radius.circular(_radius),
+                    bottomLeft: Radius.circular(_radius)),
                 image: DecorationImage(
                   image: AssetImage("images/background.png".asAsset()),
                   fit: BoxFit.cover,
@@ -44,7 +46,13 @@ class _HomePageState extends State<HomePage> {
                       "Robi",
                       style: GoogleFonts.roboto(
                           textStyle:
-                          TextStyle(color: Colors.white, fontSize: 92)),
+                              TextStyle(color: Colors.white, fontSize: 92)),
+                    ),
+                    Text(
+                      "This site is still work in Progress.",
+                      style: GoogleFonts.roboto(
+                          textStyle:
+                              TextStyle(color: Colors.white, fontSize: 48)),
                     ),
                     SizedBox(
                       width: 48,
@@ -59,16 +67,21 @@ class _HomePageState extends State<HomePage> {
                             backgroundColor: Colors.white),
                         child: Transform.scale(
                           scale: 2.5,
-                          child: Image.asset(
-                              "icons/github-mark.png".asAsset(),
+                          child: Image.asset("icons/github-mark.png".asAsset(),
                               fit: BoxFit.contain),
                         ),
                       ),
                     ),
                     const SizedBox(height: 32),
-                    IconButton(onPressed: () {
-                      widget.scrollController.animateTo(height + _radius, duration: const Duration(milliseconds: 500), curve: Curves.easeInOut);
-                    }, icon: const Icon(Icons.arrow_downward, color: Colors.white), iconSize: 128)
+                    IconButton(
+                        onPressed: () {
+                          widget.scrollController.animateTo(height + _radius,
+                              duration: const Duration(milliseconds: 500),
+                              curve: Curves.easeInOut);
+                        },
+                        icon: const Icon(Icons.arrow_downward,
+                            color: Colors.white),
+                        iconSize: 128)
                   ],
                 ),
               )
