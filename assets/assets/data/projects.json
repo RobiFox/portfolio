@@ -1,0 +1,125 @@
+[
+  {
+    "image": "portfolio.png",
+    "name": "Portfolio",
+    "description": "You are looking at it right now!",
+    "tags": [
+      "flutter", "frontend", "web"
+    ],
+    "links": [
+      "https://github.com/RobiFox/portfolio"
+    ]
+  },
+  {
+    "image": "invoice_system.png",
+    "name": "Invoice System",
+    "description": "A Java Back-End System that generates a PDF \"invoice\" based on a given value of Product IDs.",
+    "tags": [
+      "java", "backend"
+    ],
+    "links": [
+      "https://github.com/RobiFox/Invoice-System"
+    ]
+  },
+  {
+    "image": "invoice_system_react.png",
+    "name": "Invoice System Frontend",
+    "description": "A simple Front-End for the aforementioned Back End system made in react. Consists of a simple table.",
+    "tags": [
+      "react", "frontend", "web"
+    ],
+    "links": [
+      "https://github.com/RobiFox/Invoice-System-Frontend"
+    ]
+  },
+  {
+    "image": "invoice_system_flutter.png",
+    "name": "Invoice System Flutter",
+    "description": "A Front-End made in Flutter for the aforementioned Back End system made in react. Consists of a simple table.",
+    "tags": [
+      "flutter", "frontend", "web", "android", "desktop"
+    ],
+    "links": [
+      "https://github.com/RobiFox/Invoice-System-Flutter"
+    ]
+  },
+  {
+    "image": "json_placeholder.png",
+    "name": "JSON Placeholder App",
+    "description": "A plain android app that downloads data from JSONPlaceholder and shows it to the user.",
+    "tags": [
+      "kotlin", "frontend", "android"
+    ],
+    "links": [
+      "https://github.com/RobiFox/JSONPlaceholderApp"
+    ]
+  },
+  {
+    "image": "json_placeholder_flutter.png",
+    "name": "JSON Placeholder Flutter",
+    "description": "A plain Flutter app that downloads data from JSONPlaceholder and shows it to the user.",
+    "tags": [
+      "flutter", "frontend", "web" ,"android", "desktop"
+    ],
+    "links": [
+      "https://github.com/RobiFox/JSON-Placeholder-Flutter"
+    ]
+  },
+  {
+    "image": "chill.png",
+    "name": "chill",
+    "description": "Rest API Tester made in Flutter.",
+    "tags": [
+      "flutter", "frontend", "web" ,"android", "desktop"
+    ],
+    "links": [
+      "https://github.com/RobiFox/chill"
+    ]
+  },
+  {
+    "image": "pushd.png",
+    "name": "Pushd",
+    "description": "An online competitive-ish puzzle game, up to 4 players, made in 2019. No English language available.",
+    "tags": [
+      "csharp", "unity", "desktop"
+    ],
+    "links": [
+      "https://github.com/RobiFox/Pushd"
+    ]
+  },
+  {
+    "image": "foxitemlibrary.png",
+    "name": "FoxItemLibrary",
+    "description": "100% Server Sided custom items for Spigot",
+    "tags": [
+      "java", "spigot"
+    ],
+    "links": [
+      "https://github.com/RobiFox/FoxItemLibrary"
+    ]
+  },
+  {
+    "image": "emit.png",
+    "name": "EMIT",
+    "description": "A singleplayer puzzle game about reversing time",
+    "tags": [
+      "csharp", "unity", "desktop"
+    ],
+    "links": [
+      "https://github.com/RobiFox/EMIT",
+      "https://gamejolt.com/games/emit/473444",
+      "https://youtube.com/watch?v=gzMvPRjfUGo"
+    ]
+  },
+  {
+    "image": "blockquest.png",
+    "name": "BlockQuest",
+    "description": "A plugin for Minecraft for hiding blocks for your players to find for rewards.",
+    "tags": [
+      "java", "spigot"
+    ],
+    "links": [
+      "https://github.com/RobiFox/BlockQuest"
+    ]
+  }
+]

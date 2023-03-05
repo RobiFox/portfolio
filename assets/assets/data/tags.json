@@ -1,0 +1,67 @@
+[
+  {
+    "id": "java",
+    "name": "Java",
+    "color": "0xFFFF5252"
+  },
+  {
+    "id": "spring",
+    "name": "Spring",
+    "color": "0xFF00E676"
+  },
+  {
+    "id": "flutter",
+    "name": "Flutter",
+    "color": "0xFF82B1FF"
+  },
+  {
+    "id": "frontend",
+    "name": "Front-End",
+    "color": "0xFF283593"
+  },
+  {
+    "id": "backend",
+    "name": "Back-End",
+    "color": "0xFFFFB300"
+  },
+  {
+    "id": "csharp",
+    "name": "C#",
+    "color": "0xFF546E7A"
+  },
+  {
+    "id": "unity",
+    "name": "Unity",
+    "color": "0xFF00796B"
+  },
+  {
+    "id": "kotlin",
+    "name": "Kotlin",
+    "color": "0xFFF48FB1"
+  },
+  {
+    "id": "react",
+    "name": "React",
+    "color": "0xFFF48FB1"
+  },
+  {
+    "id": "web",
+    "name": "Web",
+    "color": "0xFF757575"
+  },
+  {
+    "id": "android",
+    "name": "Android",
+    "color": "0xFF9CCC65"
+  },
+  {
+    "id": "desktop",
+    "name": "Desktop",
+    "color": "0xFF4DD0E1"
+  },
+  {
+    "id": "spigot",
+    "name": "Spigot",
+    "color": "0xFFFF9100"
+  }
+]
