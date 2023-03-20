@@ -33,12 +33,16 @@ class Project extends StatelessWidget {
 
   const Project({Key? key, required this.data}) : super(key: key);
 
-  List<Widget> _buildLinkButtons() {
+  double getScale(BuildContext context) {
+    return MediaQuery.of(context).size.width < 800 ? 0.6 : 1;
+  }
+
+  List<Widget> _buildLinkButtons(double scale) {
     List<Widget> buttons = [];
     for (String link in data.links!) {
       Uri uri = Uri.parse(link);
       buttons.add(IconButton(
-          iconSize: 48,
+          iconSize: 48 * scale,
           onPressed: () => launchUrl(uri),
           icon: icons[uri.host] ?? const Icon(Icons.link)));
     }
@@ -46,6 +50,7 @@ class Project extends StatelessWidget {
   }
 
   Widget _buildImage(BuildContext context, double width, double height) {
+    double scale = getScale(context);
     return MouseRegion(
       cursor: SystemMouseCursors.zoomIn,
       child: GestureDetector(
@@ -100,8 +105,8 @@ class Project extends StatelessWidget {
           ));
         },
         child: SizedBox(
-          height: 192,
-          width: 256,
+          height: 192 * scale,
+          width: 256 * scale,
           child: ClipRRect(
             borderRadius: BorderRadius.circular(8),
             child: Image.asset(
@@ -121,6 +126,8 @@ class Project extends StatelessWidget {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
 
+    double scale = getScale(context);
+
     return Container(
       width: max(width / 2, 800) - 16,
       decoration: BoxDecoration(
@@ -138,7 +145,7 @@ class Project extends StatelessWidget {
             ),
             Expanded(
               child: SizedBox(
-                height: 192,
+                height: 192 * scale,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -152,8 +159,9 @@ class Project extends StatelessWidget {
                         Expanded(
                           child: Text(
                             data.name,
-                            style: GoogleFonts.roboto(fontSize: _nameFontSize),
+                            style: GoogleFonts.roboto(fontSize: _nameFontSize * scale),
                             textAlign: TextAlign.left,
+                            overflow: TextOverflow.ellipsis,
                           ),
                         ),
                         const SizedBox(width: 8),
@@ -168,7 +176,7 @@ class Project extends StatelessWidget {
                                       color: Colors.grey.withOpacity(0.1),
                                       borderRadius: BorderRadius.circular(32)),
                                 )),
-                                Row(children: _buildLinkButtons()),
+                                Row(children: _buildLinkButtons(scale)),
                               ],
                             ),
                           ),
@@ -179,14 +187,14 @@ class Project extends StatelessWidget {
                       child: LayoutBuilder(
                         builder: (context, constraints) {
                           final maxLines = max(
-                              (constraints.maxHeight / _descriptionFontSize)
+                              (constraints.maxHeight / _descriptionFontSize * scale)
                                       .floor() -
                                   1,
                               1);
                           return Text(
                             data.description,
                             style: GoogleFonts.roboto(
-                                fontSize: _descriptionFontSize),
+                                fontSize: _descriptionFontSize * scale),
                             textAlign: TextAlign.left,
                             overflow: TextOverflow.ellipsis,
                             maxLines: maxLines,
@@ -212,10 +220,12 @@ class Project extends StatelessWidget {
                                       //backgroundBlendMode: BlendMode.b
                                     ),
                                   )),
-                              Wrap(
-                                spacing: 8,
-                                runSpacing: 8,
-                                children: data.tags!,
+                              SingleChildScrollView(
+                                child: Wrap(
+                                  spacing: 8,
+                                  runSpacing: 8,
+                                  children: data.tags!,
+                                ),
                               ),
                             ],
                           ),
