@@ -4,7 +4,8 @@ import 'package:google_fonts/google_fonts.dart';
 const double _borderRadius = 32;
 
 class Tag extends StatefulWidget {
-  final String name;
+  final Widget name;
+  final String nameValue;
   final Color color;
   final Widget? child;
   final Function? onTap;
@@ -12,6 +13,7 @@ class Tag extends StatefulWidget {
   const Tag(
       {Key? key,
       required this.name,
+      required this.nameValue,
       required this.color,
       this.child,
       this.onTap})
@@ -21,12 +23,21 @@ class Tag extends StatefulWidget {
   State<Tag> createState() => _TagState();
 
   Tag.fromJson(Map<String, dynamic> json, {this.child, this.onTap})
-      : name = json["name"],
-        color = Color(int.parse(json["color"].toString().replaceAll("0x", ""), radix: 16));
+      : nameValue = json["name"],
+        name = FittedBox(
+          fit: BoxFit.fitWidth,
+            child: Text(
+          json["name"],
+          style: GoogleFonts.roboto(color: Colors.white),
+          textAlign: TextAlign.center,
+        )),
+        color = Color(int.parse(json["color"].toString().replaceAll("0x", ""),
+            radix: 16));
 
-  Tag withOptionals({Widget? child, Function? onTap}) {
+  Tag withOptionals({Widget? name, Widget? child, Function? onTap}) {
     return Tag(
-      name: name,
+      nameValue: nameValue,
+      name: name ?? this.name,
       color: color,
       onTap: onTap ?? this.onTap,
       child: child ?? this.child,
@@ -51,11 +62,12 @@ class _TagState extends State<Tag> {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text(
+              widget.name,
+              /*Text(
                 widget.name,
                 style: GoogleFonts.roboto(color: Colors.white),
                 textAlign: TextAlign.center,
-              ),
+              ),*/
               if (widget.child != null)
                 Row(
                   children: [
